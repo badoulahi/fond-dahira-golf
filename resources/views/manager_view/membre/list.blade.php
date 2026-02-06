@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <label for="nom_complet">Nom Complet:</label>
                                         <input type="text" class="form-control" id="nom_completEdit"
-                                            name="nom_complet" autofocus required />
+                                            name="nom_complet" required />
                                         <span class="badge badge-info">100 caractères maximum</span>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                     <div class="form-group">
                                         <label for="engagement">Montant Engagement:</label>
                                         <input type="number" class="form-control" id="engagementEdit" name="engagement"
-                                            min="5000" step="100" required />
+                                            step="500" />
                                     </div>
                                 </div>
                             </div>

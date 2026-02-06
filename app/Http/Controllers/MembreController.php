@@ -108,13 +108,13 @@ class MembreController extends Controller
         }
 
         $validatedData = $request->validate([
-            'nom_complet' => ['required', 'string', 'min:5', 'max:100'],
-            'engagement' => ['required', 'integer', 'min:5000'],
+            'nom_complet' => ['required', 'string', 'min:4', 'max:100'],
+            'engagement' => ['nullable', 'integer'],
         ]);
 
         $membre->update([
             'nom_complet' => $request->nom_complet,
-            'engagement' => $request->engagement
+            'engagement' => $request->engagement ?? 0
         ]);
         $membre->save();
 
