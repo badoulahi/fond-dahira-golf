@@ -134,7 +134,7 @@
 
         // Add Row
         $("#cotisationsTable").DataTable({
-            pageLength: 25,
+            pageLength: 100,
             order: [
                 [1, 'asc']
             ],
