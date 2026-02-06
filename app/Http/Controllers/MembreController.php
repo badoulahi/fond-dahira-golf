@@ -59,7 +59,7 @@ class MembreController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nom_complet' => ['required', 'string', 'min:5', 'max:100'],
+            'nom_complet' => ['required', 'string', 'min:4', 'max:100'],
             'engagement' => ['nullable', 'integer'],
         ]);
 
