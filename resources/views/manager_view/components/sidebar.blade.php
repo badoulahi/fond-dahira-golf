@@ -2,9 +2,9 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="{{ asset('back-office/assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand"
-                    class="navbar-brand" height="20" />
+            <a href="{{route('dashboard')}}" class="logo">
+                <img src="{{ asset('uploads/logo.png') }}" alt="navbar brand"
+                    class="navbar-brand" height="30px" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -60,12 +60,22 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    {{-- <h4 class="text-section">Menu Principal</h4> --}}
                 </li>
                 <li class="nav-item active">
                     <a href="{{ route('cotisation.show') }}">
-                        <i class="fas fa-desktop"></i>
+                        <i class="far fa-money-bill-alt"></i>
                         <p>Cotisations</p>
+                    </a>
+                </li>
+                 <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                </li>
+                <li class="nav-item active">
+                    <a href="#">
+                        <i class="fas fa-tag"></i>
+                        <p>Récapitulation</p>
                     </a>
                 </li>
             </ul>

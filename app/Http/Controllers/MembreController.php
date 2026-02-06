@@ -97,9 +97,27 @@ class MembreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Membre $membre)
+    public function update(Request $request, $slug)
     {
-        //
+        $membre = Membre::where('slug', $request->slug)->first();
+        if (!$membre) {
+            return back()->withErrors(['error' => 'Membre inexistant !!!']);
+        }
+
+        $validatedData = $request->validate([
+            'nom_complet' => ['required', 'string', 'min:5', 'max:100'],
+            'engagement' => ['required', 'integer', 'min:5000'],
+        ]);
+
+        $membre->update([
+            'nom_complet' => $request->nom_complet,
+            'engagement' => $request->engagement
+        ]);
+        $membre->save();
+
+        return redirect()
+            ->route('membres.index')
+            ->with('success', 'Le membre a bien été modifié');
     }
 
     /**

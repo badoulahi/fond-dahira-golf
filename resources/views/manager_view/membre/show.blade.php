@@ -26,7 +26,7 @@
                                         @foreach ($mois as $key => $value)
                                             <th>{{ $value }}</th>
                                         @endforeach
-                                        <th>Total (F)</th>
+                                        <th style="white-space: nowrap; text-align: right;">Total (F)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,10 +69,6 @@
                                     <tr>
                                         <th></th>
                                         <th>TOTAL</th>
-                                        {{-- <td colspan="12">Larry the Bird</td> --}}
-                                        {{-- @foreach ($mois as $key => $value) --}}
-                                        {{-- <th style="text-align: right; white-space: nowrap;"></th> --}}
-                                        {{-- @endforeach --}}
                                         <th colspan="13"
                                             style="text-align: right; white-space: nowrap; font-weight: bold;">
                                             {{ number_format($total, 0, '', ' ') }}</th>
@@ -134,18 +130,18 @@
     <script>
         var mois = {!! json_encode($mois ?? []) !!};
 
-        $(document).ready(function() {
+        // $(document).ready(function() {
 
-            // Add Row
-            $("#cotisationsTable").DataTable({
-                pageLength: 5,
-                order: [
-                    [1, 'asc']
-                ],
-                'ordering': false,
-                'paging': true,
-            });
+        // Add Row
+        $("#cotisationsTable").DataTable({
+            pageLength: 25,
+            order: [
+                [1, 'asc']
+            ],
+            'ordering': true,
+            'paging': true,
         });
+        // });
 
 
         $(document).on('click', '.badge-primary[data-bs-toggle="modal"]', function() {

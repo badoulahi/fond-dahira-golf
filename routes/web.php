@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return "Cache cleared!";
 // });
 
-// Route::get('/create', [ManagerController::class, 'create']);
+Route::get('/create', [ManagerController::class, 'create']);
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [ManagerController::class, 'login'])->name('manager.login');
