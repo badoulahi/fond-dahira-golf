@@ -60,13 +60,13 @@ class MembreController extends Controller
     {
         $validatedData = $request->validate([
             'nom_complet' => ['required', 'string', 'min:5', 'max:100'],
-            'engagement' => ['required', 'integer', 'min:5000'],
+            'engagement' => ['nullable', 'integer'],
         ]);
 
         $membre = Membre::create($validatedData);
 
         $mensualite = new Mensualite([
-            'engagement' => $request->engagement,
+            'engagement' => $request->engagement ?? 0,
             // 'annee' => date('Y'),
             'membre_id' => $membre->id
         ]);

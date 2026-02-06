@@ -41,7 +41,7 @@
                                     @foreach ($membres as $membre)
                                         <tr>
                                             <td>{{ $membre->nom_complet }}</td>
-                                            <td>{{ $membre->engagement }}</td>
+                                            <td>{{ number_format($membre->engagement, 0, '', ' ') }}</td>
                                             <td>
                                                 <div class="form-button-action">
                                                     <button type="button" data-nom="{{ $membre->nom_complet }}"
@@ -110,7 +110,7 @@
                                     <div class="form-group">
                                         <label for="engagement">Montant Engagement:</label>
                                         <input type="number" class="form-control" id="engagement" name="engagement"
-                                            value="{{ old('engagement') }}" min="5000" step="100" required />
+                                            value="{{ old('engagement') }}" step="500" />
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                     <div class="card-header">
                         <div class="card-title">Formulaire d'ajout de membres</div>
                     </div>
-                    <form action="{{ route('membres.update',1) }}" method="POST">
+                    <form action="{{ route('membres.update', 1) }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="card-body">
