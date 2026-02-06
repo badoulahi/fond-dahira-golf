@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('slug', 100)->unique();
             $table->string("nom_complet", 100);
-            $table->integer("engagement")->default(0);
+            $table->integer("engagement")->nullable(0);
             // $table->date('date_adhesion')->nullable();
             $table->timestamps();
         });
