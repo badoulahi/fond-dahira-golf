@@ -63,7 +63,10 @@ class MembreController extends Controller
             'engagement' => ['nullable', 'integer'],
         ]);
 
-        $membre = Membre::create($validatedData);
+        $membre = Membre::create([
+            'nom_complet' => $request->nom_complet,
+            'engagement' => $request->engagement ?? 0
+        ]);
 
         $mensualite = new Mensualite([
             'engagement' => $request->engagement ?? 0,
