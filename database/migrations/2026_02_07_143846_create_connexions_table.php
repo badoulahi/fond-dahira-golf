@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('connexions', function (Blueprint $table) {
             $table->id();
             $table->string('membre_id');
-            $table->string('date_connexion')->default(now()->format('d M Y'));
+            $table->string('date_connexion')->default(now()->format('d M Y H:i:s'));
             $table->timestamps();
         });
     }
