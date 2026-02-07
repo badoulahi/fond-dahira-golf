@@ -39,6 +39,7 @@
                                                             data-bs-target="#addMensualite"
                                                             data-mensualite='@json($mensualite)'
                                                             data-membre="{{ $membre->nom_complet }}"
+                                                            data-engagement="{{ $membre->engagement }}"
                                                             data-year="{{ $selectedYear }}">
                                                             <div class="badge badge-primary">
                                                                 <i class="fa fa-edit"></i>
@@ -87,7 +88,7 @@
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title">
-                        <span class="fw-mediumbold">Mensualité du membre - </span>
+                        <span class="fw-mediumbold">Mensualité du membre - <strong id="membreNom"></strong></span>
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -95,7 +96,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-header">
-                        <div class="card-title">Mensualité du membre - <span id="membreNom"></span></div>
+                        <div class="card-title">Engagement: <span id="membreEngagement"></span> F CFA</div>
                     </div>
                     <form action="{{ route('cotisation.store') }}" method="POST">
                         @csrf
@@ -147,8 +148,10 @@
         $(document).on('click', '.badge-primary[data-bs-toggle="modal"]', function() {
             const mensualite = $(this).data('mensualite');
             const membreNom = $(this).data('membre');
+            const engagement = $(this).data('engagement')
 
             $('#membreNom').text(membreNom);
+            $('#membreEngagement').text(engagement);
 
             for (var m in mois) {
                 const chaine = m.toLowerCase();

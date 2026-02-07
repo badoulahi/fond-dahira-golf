@@ -18,7 +18,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Total Adhérants</p>
-                                    <h4 class="card-title">{{ number_format(125, 0, '', ' ') }}</h4>
+                                    <h4 class="card-title">
+                                        {{ number_format($statistics_annuel['totalMembre'], 0, '', ' ') }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -37,7 +38,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Mois en cours</p>
-                                    <h6 class="fw-bold">{{ number_format(300000, 0, '', ' ') }} F CFA</h6>
+                                    <h6 class="fw-bold">{{ number_format($statistics_annuel['totalMensuel'], 0, '', ' ') }}
+                                        F CFA</h6>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +58,8 @@
                             <div class="col-7 col-stats">
                                 <div class="numbers">
                                     <p class="card-category">Année en cours</p>
-                                    <h6 class="fw-bold ">{{ number_format(1180000, 0, '', ' ') }} F CFA</h6>
+                                    <h6 class="fw-bold ">{{ number_format($statistics_annuel['totalAnnuel'], 0, '', ' ') }}
+                                        F CFA</h6>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +68,52 @@
             </div>
         </div>
 
-        <h3 class="fw-bold mb-3">Repartition des cotisations mensuelles</h3>
+        <h3 class="fw-bold mb-3">Répartition des cotisations par tranche</h3>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card card-black">
+                    <div class="card-body pb-0">
+                        <div class="h2 fw-bold float-end">
+                            {{ $statistics_annuel['repartitionCotisation']['cinqmille']['pourcentage'] }} %</div>
+                        <h5 class="mb-2 fw-bold">5 000 F CFA</h5>
+                        <p>{{ $statistics_annuel['repartitionCotisation']['cinqmille']['nombre'] }} membres</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-primary bg-secondary-gradient">
+                    <div class="card-body pb-0">
+                        <div class="h2 fw-bold float-end">
+                            {{ $statistics_annuel['repartitionCotisation']['dixmille']['pourcentage'] }} %</div>
+                        <h5 class="mb-2 fw-bold">Entre 5K et 10K F CFA</h5>
+                        <p>{{ $statistics_annuel['repartitionCotisation']['dixmille']['nombre'] }} membres</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-primary bg-primary-gradient">
+                    <div class="card-body pb-0">
+                        <div class="h2 fw-bold float-end">
+                            {{ $statistics_annuel['repartitionCotisation']['vinghtmille']['pourcentage'] }} %</div>
+                        <h5 class="mb-2 fw-bold">Entre 10K et 20K F CFA</h5>
+                        <p>{{ $statistics_annuel['repartitionCotisation']['vinghtmille']['nombre'] }} membres</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-success bg-success2">
+                    <div class="card-body pb-0">
+                        <div class="h2 fw-bold float-end">
+                            {{ $statistics_annuel['repartitionCotisation']['plus']['pourcentage'] }} %</div>
+                        <h5 class="mb-2 fw-bold">+ de 20 000 F CFA</h5>
+                        <p>{{ $statistics_annuel['repartitionCotisation']['plus']['nombre'] }} membres</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="fw-bold mb-3">Répartition des cotisations mensuelles</h3>
 
         <div class="row">
             <div class="col-md-3">
@@ -310,46 +358,7 @@
             </div>
         </div>
 
-        <h3 class="fw-bold mb-3">Repartition des cotisations par tranche</h3>
 
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card card-black">
-                    <div class="card-body pb-0">
-                        <div class="h1 fw-bold float-end">10%</div>
-                        <h2 class="mb-2 fw-bold">5 000 F CFA</h2>
-                        <p>47 membres</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-primary bg-secondary-gradient">
-                    <div class="card-body pb-0">
-                        <div class="h1 fw-bold float-end">18%</div>
-                        <h2 class="mb-2 fw-bold">10 000 F CFA</h2>
-                        <p>38 membres</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-primary bg-primary-gradient">
-                    <div class="card-body pb-0">
-                        <div class="h1 fw-bold float-end">32%</div>
-                        <h2 class="mb-2 fw-bold">15 000 F CFA</h2>
-                        <p>30 membres</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-success bg-success2">
-                    <div class="card-body pb-0">
-                        <div class="h1 fw-bold float-end">40%</div>
-                        <h2 class="mb-2 fw-bold">+ de 20 000 F CFA</h2>
-                        <p>10 membres</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         {{-- <div class="row">

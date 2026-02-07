@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Mensualite extends Model
 {
@@ -27,5 +28,10 @@ class Mensualite extends Model
             $this->oct +
             $this->nov +
             $this->dec;
+    }
+
+    public function mensuel($mois)
+    {
+        return $this->{Str::lower($mois)};
     }
 }
