@@ -42,9 +42,17 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'auth-admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
         'auth-manager' => [
             'driver' => 'session',
             'provider' => 'managers',
+        ],
+        'auth-visitor' => [
+            'driver' => 'session',
+            'provider' => 'visitors',
         ]
     ],
 
@@ -70,7 +78,15 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Manager::class,
+        ],
         'managers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Manager::class,
+        ],
+        'visitors' => [
             'driver' => 'eloquent',
             'model' => App\Models\Manager::class,
         ],
@@ -106,13 +122,18 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
         'managers' => [
             'provider' => 'managers',
             'table' => 'password_resets',
             'expire' => 60,
         ],
-        'admins' => [
-            'provider' => 'admins',
+        'visitors' => [
+            'provider' => 'visitors',
             'table' => 'password_resets',
             'expire' => 60,
         ],

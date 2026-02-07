@@ -55,9 +55,9 @@
                 <div class="form-group">
                     <div class="input-wrapper">
                         <div class="input-decoration"></div>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                        <input type="text" id="username" name="username" value="{{ old('username') }}" required
                             autofocus autocomplete="off">
-                        <label for="email">Login</label>
+                        <label for="username">Login</label>
                         <div class="input-waves">
                             <div class="wave wave-1"></div>
                             <div class="wave wave-2"></div>

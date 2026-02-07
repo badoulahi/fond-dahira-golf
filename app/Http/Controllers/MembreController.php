@@ -69,7 +69,6 @@ class MembreController extends Controller
         ]);
 
         $mensualite = new Mensualite([
-            'engagement' => $request->engagement ?? 0,
             // 'annee' => date('Y'),
             'membre_id' => $membre->id
         ]);
@@ -132,7 +131,7 @@ class MembreController extends Controller
         // if ($membre->mensualites()->exists()) {
         //     return redirect()
         //         ->route('membres.index')
-        //         ->with('error', 'Le client possède des memsualités');
+        //         ->with('error', 'Le client possède des mensualités');
         // }
 
         $membre->delete();
@@ -154,7 +153,6 @@ class MembreController extends Controller
                 }
             }
         }
-        // dd($total);
         return view('manager_view.membre.show', [
             'membres' => $membres,
             'mois' => self::TABLEAU_MOIS,

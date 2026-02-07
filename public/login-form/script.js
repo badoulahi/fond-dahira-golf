@@ -2,7 +2,7 @@
 class CreativeLoginForm {
     constructor() {
         this.form = document.getElementById('loginForm');
-        this.emailInput = document.getElementById('email');
+        this.usernameInput = document.getElementById('username');
         this.passwordInput = document.getElementById('password');
         this.passwordToggle = document.getElementById('passwordToggle');
         this.submitButton = this.form.querySelector('.login-btn');
@@ -19,9 +19,9 @@ class CreativeLoginForm {
     }
 
     bindEvents() {
-        this.emailInput.addEventListener('focus', () => this.addInputFocus('email'));
+        this.usernameInput.addEventListener('focus', () => this.addInputFocus('username'));
         this.passwordInput.addEventListener('focus', () => this.addInputFocus('password'));
-        this.emailInput.addEventListener('blur', () => this.removeInputFocus('email'));
+        this.usernameInput.addEventListener('blur', () => this.removeInputFocus('username'));
         this.passwordInput.addEventListener('blur', () => this.removeInputFocus('password'));
     }
 

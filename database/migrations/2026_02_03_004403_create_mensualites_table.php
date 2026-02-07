@@ -12,9 +12,7 @@ return new class extends Migration {
     {
         Schema::create('mensualites', function (Blueprint $table) {
             $table->id();
-            $table->integer("engagement")->default(0);
             $table->string('annee')->default(date('Y'));
-
             $table->integer("jan")->default(0);
             $table->integer("feb")->default(0);
             $table->integer("mar")->default(0);
@@ -27,9 +25,7 @@ return new class extends Migration {
             $table->integer("oct")->default(0);
             $table->integer("nov")->default(0);
             $table->integer("dec")->default(0);
-
             $table->foreignId('membre_id')->constrained('membres')->cascadeOnDelete();
-
             $table->timestamps();
         });
     }

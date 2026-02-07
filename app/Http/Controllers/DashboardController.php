@@ -47,7 +47,7 @@ class DashboardController extends Controller
         $membres = Membre::all();
         $totalMembre = $membres->count();
 
-        $totalEngagement = 0;
+        $totalEngagement = 1;
         $totalAnnuel = 0;
         $totalMensuel = 0;
         $mensualites = Mensualite::all();

@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 //     return "Cache cleared!";
 // });
 
-Route::get('/create', [ManagerController::class, 'create']);
+// Route::get('/create', [ManagerController::class, 'create']);
 
 Route::middleware(['guest:web'])->group(function () {
     Route::get('/login', [ManagerController::class, 'login'])->name('manager.login');
     Route::post('/login', [ManagerController::class, 'store'])->name('manager.store');
 });
 
-Route::middleware(['auth:auth-manager'])->group(function () {
+Route::middleware(['auth:auth-admin,auth-manager,auth-visitor'])->group(function () {
     Route::get('/', [DashboardController::class, 'accueil'])->name('dashboard');
 
     Route::resource('membres', MembreController::class);

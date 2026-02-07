@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
+use App\Models\Connexion;
 use App\Models\Manager;
 use App\Services\EventService;
 use App\Services\ImageService;
@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 class ManagerController extends Controller
 {
@@ -34,22 +33,33 @@ class ManagerController extends Controller
     {
         $request->validate(
             [
-                'email' => ['required', 'string'],
+                'username' => ['required', 'string'],
                 'password' => ['required', 'string'],
             ],
         );
 
-        $info = $request->only('email', 'password');
+        $info = $request->only('username', 'password');
 
-        $user = Manager::where('email', $info['email'])->first();
+        $user = Manager::where('username', $info['username'])->first();
 
         if (!$user) {
             return back()->with('error', 'Utilisateur introuvable.');
         }
 
-        $guard = 'auth-manager';
+        $guard = '';
+
+        if ($user->role == 'admin') {
+            $guard = 'auth-admin';
+        } else if ($user->role == 'manager') {
+            $guard = 'auth-manager';
+        } else {
+            $guard = 'auth-visitor';
+        }
 
         if (Auth::guard($guard)->attempt($info)) {
+            Connexion::create([
+                'membre_id' => $user->id
+            ]);
             return redirect()->route('dashboard');
         } else {
             return redirect()->back()->with('error', 'Echec Connexion !!!');
@@ -69,13 +79,30 @@ class ManagerController extends Controller
 
     public function create(Request $request)
     {
-        $save = new Manager;
-        $save->prenom = "Dahira";
-        $save->nom = "Golf";
-        $save->email = "dahira@golf";
-        $save->password = Hash::make("12345678");
+        $manager = new Manager;
+        $manager->prenom = "Dahira";
+        $manager->nom = "Golf";
+        $manager->username = "dahira@golf";
+        $manager->password = Hash::make("12345678");
+        $manager->role = "manager";
 
-        $save->save();
+        $manager->save();
+
+        $admin = new Manager;
+        $admin->prenom = "Super";
+        $admin->nom = "Admin";
+        $admin->username = "lookman@rahman";
+        $admin->password = Hash::make("LookmanRahman");
+        $admin->role = "admin";
+        $admin->save();
+
+        $user = new Manager;
+        $user->prenom = "Simple";
+        $user->nom = "User";
+        $user->username = "dahiragolf";
+        $user->password = Hash::make("87654321");
+        $user->role = "visitor";
+        $user->save();
     }
 
     public function showProfil()
@@ -91,12 +118,12 @@ class ManagerController extends Controller
         $validatedData = $request->validate([
             'prenom' => ['required', 'string', 'max:40'],
             'nom' => ['required', 'string', 'max:30'],
-            'email' => ['required', 'string', 'email', 'max:50', Rule::unique('managers', 'email')->ignore($request->id),],
+            'username' => ['required', 'string', 'max:50', Rule::unique('managers', 'username')->ignore($request->id),],
         ]);
 
         $manager->prenom = $request->prenom;
         $manager->nom = $request->nom;
-        $manager->email = $request->email;
+        $manager->username = $request->username;
         $manager->save();
 
         $this->eventService->eventService('EDIT-PROFIL');
